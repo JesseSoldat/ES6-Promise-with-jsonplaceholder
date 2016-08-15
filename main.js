@@ -24,11 +24,23 @@ function getData(method, url) {
 	});
 }
 
-// getData('GET','https://jsonplaceholder.typicode.com/todos').then(function(data){
-// 	console.log(data);
-// }).catch(function(err){
-// 	console.log(err);
-// });
+getData('GET','https://jsonplaceholder.typicode.com/todos').then(function(data){
+	// console.log(data);
+	let todos = JSON.parse(data);
+	let output = '';
+	for(let todo of todos){
+		output += `
+		<li>
+			<h3>${todo.title}</h3>
+			<p>Completed: ${todo.completed}</p>
+		</li>
+
+		`
+	}
+	document.getElementById('template').innerHTML = output;
+}).catch(function(err){
+	console.log(err);
+});
 
 
 // $.ajax('http://jsonplaceholder.typicode.com/posts/1', {
@@ -45,15 +57,27 @@ function getData(method, url) {
 
 
 // POST adds a random id to the object sent
-$.ajax('http://jsonplaceholder.typicode.com/posts', {
-  method: 'POST',
-  data: {
-    title: 'My Ajax Adventure',
-    body: 'Playing around with AJAX',
-    userId: 1,
-    author: 'Jesse Soldat'
-  }
-}).then(function(data) {
-  console.log(data);
-});
+// $.ajax('http://jsonplaceholder.typicode.com/posts', {
+//   method: 'POST',
+//   data: {
+//     title: 'My Ajax Adventure',
+//     body: 'Playing around with AJAX',
+//     userId: 1,
+//     author: 'Jesse Soldat'
+//   }
+// }).then(function(data) {
+//   console.log(data);
+// });
+
+// $.ajax('http://jsonplaceholder.typicode.com/posts/1', {
+//   method: 'PUT',
+//   data: {
+//     id: 1,
+//     title: 'JLAB Adventures',
+//     body: 'Updating with Ajax',
+//     userId: 1
+//   }
+// }).then(function(data) {
+//   console.log(data);
+// });
 
